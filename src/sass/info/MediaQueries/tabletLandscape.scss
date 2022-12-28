@@ -1,0 +1,279 @@
+@import '../../mq';
+
+@media #{$tabletLandscape} {
+  @import '../desktop';
+
+  & {
+    #canvas {
+      display: none;
+    }
+
+    header,
+    footer,
+    main {
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 960px;
+    }
+
+    .menu-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .menu li a {
+      padding: 0 15px;
+    }
+
+    .slick-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+
+      li {
+        padding: 0 !important;
+        width: 8px;
+        height: 8px;
+        border: 1px solid #FFFFFF;
+        border-radius: 50%;
+        margin: 10px !important;
+
+        button {
+          display: none;
+        }
+
+        &.slick-active {
+          background: #EBFF00;
+          border-color: #EBFF00;
+        }
+      }
+    }
+
+    .unique-card {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-img img {
+      float: none;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+    }
+
+    .hero-bottom .before-border {
+      margin-bottom: 78px;
+
+      &:before {
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        top: inherit;
+        bottom: -46px;
+        left: 0%;
+        transform: none;
+      }
+    }
+
+    .platforms-list {
+      flex-wrap: wrap;
+
+      li {
+        margin-bottom: 28px;
+
+      }
+    }
+
+    .offset-xl-3,
+    .offset-xl-1 {
+      margin-left: 0;
+    }
+
+    .unique-slider {
+      max-width: 844px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slogan {
+      background-size: 903px;
+      min-height: 630px;
+
+      &-item {
+        min-height: 275px;
+        background-size: cover;
+        padding-left: 30px;
+        padding-right: 30px;
+
+        h3 {
+          max-width: 757px;
+        }
+
+        p {
+          max-width: 493px;
+          margin-left: auto;
+        }
+      }
+    }
+
+    .works {
+      padding-bottom: 0;
+
+      &-item {
+        max-width: 374px;
+        margin-bottom: 100px;
+      }
+    }
+
+    .lg-none {
+      display: none;
+    }
+
+    .lg-block {
+      display: block;
+    }
+
+    .mechanics-img {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lg-flex {
+      display: flex;
+      align-items: flex-end;
+      max-width: 741px;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: space-between;
+    }
+
+    .mechanics-list {
+      margin-bottom: 0;
+    }
+
+    .nft {
+      padding-bottom: 100px;
+
+      h2 {
+        margin-bottom: 80px;
+      }
+
+      &-cardList {
+        max-width: 810px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      &-btn {
+        margin-left: 140px;
+      }
+
+      &-item {
+        &:first-child {
+          margin-top: 45px;
+        }
+
+        display: inline-block;
+        margin-right: 64px;
+      }
+
+      &-logo {
+        margin-top: 60px;
+      }
+    }
+
+    .tokenomics {
+      h2 {
+        margin-bottom: 60px;
+      }
+
+      &-bg {
+        padding-top: 70px;
+        padding-bottom: 85px;
+        background: url('../images/tokenomics-bg-lg.webp') no-repeat center;
+        background-size: cover;
+
+        .col-xl-6:first-child {
+          margin-bottom: 104px;
+        }
+
+        &:before {
+          width: 614px;
+          height: 1px;
+        }
+      }
+    }
+
+    .tba {
+      border-top: 0;
+      padding-bottom: 60px;
+      margin-bottom: 60px;
+      border-bottom: 1px solid #434343;
+      margin-top: 0;
+    }
+
+    .tokens-list {
+      padding-left: 0;
+    }
+
+    .tokenomics-logo {
+      padding-left: 0;
+      flex-direction: column;
+
+      li {
+        &:first-child {
+          padding-top: 0;
+        }
+      }
+    }
+
+    .tokens-p {
+      margin-left: -80px;
+      max-width: 370px;
+    }
+
+    .roadmap {
+      padding-top: 0;
+    }
+
+    .team-item {
+      max-width: 375px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .team-item.large {
+      max-width: 100%;
+
+      img {
+        max-width: 520px;
+      }
+
+      .name {
+        margin-top: 60px;
+      }
+    }
+
+    .projects {
+      padding-bottom: 71px;
+
+      h2 {
+        max-width: 824px;
+      }
+
+      &-item {
+        h4 {
+          color: #EBFF00;
+        }
+
+        margin-bottom: 52px;
+      }
+    }
+
+  }
+
+}
