@@ -27,7 +27,7 @@ class Author extends Component {
   }
 
   render() {
-    const author = this.state;
+    const {photo, name, post, aboutUser, social} = this.state;
     return (
       <section className="team" id="team">
         <div className="container">
@@ -37,24 +37,24 @@ class Author extends Component {
               <div className="row align-items-center"> 
                 <div className="offset-xl-3 col-lg-6 col-xl-4 order-2 order-lg-1">
                   <div className="team-item large">
-                    <div className="name">{author.name}</div>
-                    <div className="post">{author.post}</div>
-                    <p>{author.aboutUser}</p>
+                    <div className="name">{name}</div>
+                    <div className="post">{post}</div>
+                    <p>{aboutUser}</p>
                     <ul className="social mt-30">
-                      {Array.prototype.map.call(author.social, function (item, index) {
-                          return <li key={index}>
-                                  <a rel="noreferrer" href={item.link} target="_blank">
-                                    <img src={item.icon} alt="" />
-                                  </a>
-                                </li>;
-                      }, this)}
+                    {social.map((item, index) => (
+                      <li key={'social_'+index}>
+                          <a rel="noreferrer" href={item.link} target="_blank">
+                            <img src={item.icon} alt={item.link} />
+                          </a>
+                        </li>
+                    ))}
                     </ul>
                   </div>
                 </div>
                 <div className="col-xl-5 col-lg-6 order-1 order-lg-2">
                   <div className="team-item large">
                     <div className="img">
-                      <img src={author.photo} alt="" />
+                      <img src={photo} alt={name} />
                     </div>
                   </div>
                 </div>

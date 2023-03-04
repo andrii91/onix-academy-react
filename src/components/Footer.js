@@ -49,26 +49,26 @@ class Footer extends Component {
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
-              <a className="logo" href="/"><img src={logo} alt="" /></a>
+              <a className="logo" href="/"><img src={logo} alt="logo" /></a>
               <ul className="social">
-                {Array.prototype.map.call(social, function (item, index) {
-                    return <li key={index}>
-                            <a rel="noreferrer" href={item.link} target="_blank">
-                              <img src={item.icon} alt="" />
-                            </a>
-                          </li>;
-                }, this)}
+                {social.map((item, index) => (
+                  <li key={'social-footer-'+index}>
+                    <a rel="noreferrer" href={item.link} target="_blank">
+                      <img src={item.icon} alt={'icon'+index} />
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="col-lg-6">
               <ul className="menu">
-                {Array.prototype.map.call(menu, function (item, index) {
-                    return <li key={index}><a href={item.link}>{item.title}</a></li>;
-                }, this)}
+                {menu.map((item, index) => (
+                  <li key={'footer-menu-'+index}><a href={item.link}>{item.title}</a></li>
+                ))}
               </ul>
               
               <a href="/#" className="orange-logo" target="_blank" >
-                <img src={orangeLogo} alt="" />
+                <img src={orangeLogo} alt="orange-logo" />
               </a>
             </div>
           </div>

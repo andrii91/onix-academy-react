@@ -29,20 +29,20 @@ class Header extends Component {
   }
 
   render() {
-    const navMenu = this.state.menu;
+    const { menu } = this.state;
     return (
       <nav className="nav fixed">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-2">
-              <a className="logo" href="/app/"><img src={logo} alt="" /></a>
-              <div id="nav-btn"><img src={burger} alt="" /></div>
+              <a className="logo" href="/onix-academy-react/"><img src={logo} alt="logo" /></a>
+              <div id="nav-btn"><img src={burger} alt="mob-btn" /></div>
             </div>
             <div className="col-lg-10 menu-container">
               <ul className="menu">
-              {Array.prototype.map.call(navMenu, function (item, index) {
-                  return <li key={index}><a href={item.link}>{item.title}</a></li>;
-              }, this)}
+                {menu.map((item, index) => (
+                  <li key={'header-menu-'+index}><a href={item.link}>{item.title}</a></li>
+                ))}
               </ul>
             </div>
           </div>
