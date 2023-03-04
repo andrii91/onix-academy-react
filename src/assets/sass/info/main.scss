@@ -1104,6 +1104,11 @@ h2 {
       background: #34303B;
       border-radius: 10px;
       min-height: 140px;
+      max-width: 560px;
+
+      &.no-active {
+        opacity: .5;
+      }
 
       &.d-none {
         display: none;
@@ -1121,7 +1126,7 @@ h2 {
         display: flex;
         align-items: center;
 
-        svg {
+        svg, .svg {
           margin-right: 8px;
         }
       }
@@ -1133,6 +1138,10 @@ h2 {
         font-size: 16px;
         line-height: 26px;
         color: rgba(255, 255, 255, 0.4);
+      }
+
+      .builder-name {
+        margin-top: 40px;
       }
     }
 

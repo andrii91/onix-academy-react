@@ -1,193 +1,168 @@
 import { Component } from "react";
+import { faker } from '@faker-js/faker';
+
+import complete from '../assets/images/complete.svg';
+import nocomplete from '../assets/images/nocomplete.svg';
+
+const data = [
+  {
+    id: 4,
+    title : "Launch Alpha Version",
+    info : "18 June 2021",
+    complete : 1,
+    builder: {
+        firstName: 'Jon',
+        lastName: 'Dou',
+    },
+    date: '12/31/1993',
+  },
+  {
+    id: 6,
+    title : "User Aquisition Tests",
+    info : "Conversion grow to 49% ",
+    complete : 1,
+    builder: {
+        firstName: 'Vasia',
+        lastName: 'Pupkin',
+    },
+    date: '01/26/2012',
+  },
+  {
+    id: 2,
+    title : "NFT Player Avatars",
+    info : "Febrary 2022",
+    complete : 0,
+    builder: {
+        firstName: 'Vykola',
+        lastName: 'Sikira',
+    },
+    date: '01/26/2021',
+  },
+  {
+    id: 1,
+    title : "NFT Marketplace",
+    info : "Febrary 2022",
+    complete : 0,
+    builder: {
+        firstName: 'Don',
+        lastName: 'Penenyon',
+    },
+    date: '05/26/2022',
+  },
+  {
+    id: 13,
+    title : "Support 10 languages",
+    info : "Febrary 2022",
+    complete : 0,
+    builder: {
+        firstName: 'Kasatik',
+        lastName: 'Dou',
+    },
+    date: '05/22/2023',
+  }
+];
 
 class Roadmap extends Component {
   constructor(props) {
     super(props);
 
-    this.state = [
-      {
-        "title" : "Launch Alpha Version",
-        "info" : "18 June 2021",
-        "complete" : 1
-      },
-      {
-        "title" : "User Aquisition Tests",
-        "info" : " ",
-        "complete" : 1
-      },
-      {
-        "title" : "Add async multiplayer",
-        "info" : "Conversion grow to 49%",
-        "complete" : 1
-      },
-      {
-        "title" : "Launch Beta Version",
-        "info" : "18 June 2021",
-        "complete" : 1
-      },
-      {
-        "title" : "User Aquisition Tests",
-        "info" : " ",
-        "complete" : 1
-      },
-      {
-        "title" : "Add 2 word game mechanics",
-        "info" : "18 June 2021",
-        "complete" : 1
-      },
-      {
-        "title" : "Magic Chests Beta",
-        "info" : "Conversion grow to 49%",
-        "complete" : 1
-      },
-      {
-        "title" : "Add 350+ words",
-        "info" : "18 June 2021",
-        "complete" : 1
-      },
-      {
-        "title" : "Launch promo web site",
-        "info" : "18 June 2021",
-        "complete" : 1
-      },
-      {
-        "title" : "Word decks",
-        "info" : "18 June 2021",
-        "complete" : 1
-      },
-      {
-        "title" : "Private sale on Seedify logo",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Redesign game",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Championships",
-        "info" : "March 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Soft launch in Canada",
-        "info" : "March 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "User Aquisition Tests",
-        "info" : "March 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Presale and token listing on Gate.io",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "In-game token word",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Artists word decks and special events",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Support 5 languages",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Soft launch in countries with 5 languages",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "NFT presale on Binance NFT",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Token listing on Binance ",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "NFT word decks",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Add 2 word game mechanics",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "NFT Player Avatars",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "NFT Marketplace",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Support 10 languages",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Worldwide release",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      },
-      {
-        "title" : "Special events and promo for Artists Decks",
-        "info" : "Febrary 2022",
-        "complete" : 0
-      }
-    ];
+    this.state = {
+      roadmap: data
+    };
   }
 
+  addItem = () => {
+    const { roadmap: roadmapData } = this.state;
+
+    const roadmapDataAll = [...roadmapData, {
+      id: (new Date()).getTime(),
+      title : faker.name.jobTitle(),
+      info : faker.lorem.text(),
+      complete : 1,
+      builder: {
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
+      },
+      date: new Date().toLocaleDateString('en-US'),
+    }]
+
+    this.setState({ roadmap: roadmapDataAll });
+
+  }
+
+  removeItem = () => {
+    const { roadmap: roadmapData } = this.state;
+        roadmapData.pop();
+
+    this.setState({ roadmap: roadmapData });
+  }
+
+  sortItemById = () => {
+    const naturalCollator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+
+    this.setState(({ roadmap }) => {
+      return {
+        roadmap: roadmap.sort((a, b) => naturalCollator.compare(a.id, b.id))
+      };
+    });
+  };
+
+  sortItemByDate = () => {
+
+    const { roadmap: roadmapData } = this.state;
+
+    for (let i = 0; i < roadmapData.length; i += 1) {
+      for (let k = 0; k < roadmapData.length - 1; k += 1) {
+        if (new Date(roadmapData[k].date) < new Date(roadmapData[k + 1].date)) {
+          const item = roadmapData[k];
+          roadmapData[k] = roadmapData[k + 1];
+          roadmapData[k + 1] = item;
+        }
+      }
+    }
+    this.setState({ roadmap: roadmapData });
+  };
+
+  
+
   render() {
+    const {roadmap} = this.state;
+
     return (
-        <section class="roadmap" id="roadmap">
-            <div class="container">
-            <h2>Roadmap</h2>
-            <h5>Completed</h5>
-            <ul class="roadmap-list" id="completed">
-              <li>
-                <h6>
-                  <svg viewBox="0 0 32 33" width="32" height="33" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.73 8.969a1.6 1.6 0 0 1 0 2.262l-12.8 12.8a1.6 1.6 0 0 1-2.262 0l-6.4-6.4A1.6 1.6 0 0 1 7.53 15.37l5.269 5.269 11.669-11.67a1.6 1.6 0 0 1 2.262 0Z" fill="#fff"/></svg>
-                  <span>titile</span>
-                </h6>
-                <p>info</p>
-              </li>
-            </ul>
-            <a href="#completed" class="show-more">Show full list </a>
-            
-            <h5 class="mt-56">Upcoming</h5>
-            <div class="upcoming-item" id="upcoming">
-                <div class="title"></div>
-                <div class="info"></div>
-                <a href="#subscription" rel="modal:open" class="upcoming-link">Notify me</a>
-            </div>
-            
-            <h5>Planned</h5>
-            <ul class="roadmap-list" id="planned">
-              <li>
-                <h6>
-                  <svg viewBox="0 0 32 33" width="32" height="33" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.73 8.969a1.6 1.6 0 0 1 0 2.262l-12.8 12.8a1.6 1.6 0 0 1-2.262 0l-6.4-6.4A1.6 1.6 0 0 1 7.53 15.37l5.269 5.269 11.669-11.67a1.6 1.6 0 0 1 2.262 0Z" fill="#fff"/></svg>
-                  <span>titile</span>
-                </h6>
-                <p>info</p>
-              </li>
-            </ul>
-            <a href="#planned" class="show-more">Show full list </a>
+        <section className="roadmap" id="roadmap">
+            <div className="container">
+              <h2>Roadmap</h2>
+              <div className="row">
+                <div className="col">
+                  <button onClick={this.sortItemById} className="btn-registration">Sort by ID</button>
+                </div>
+                <div className="col">
+                  <button onClick={this.sortItemByDate} className="btn-registration">Sort Custom by date</button>
+                </div>
+                <div className="col">
+                  <button onClick={this.addItem} className="btn-registration">Add Item</button>
+                </div>
+                <div className="col">
+                  <button onClick={this.removeItem} className="btn-registration">Remove Item</button>
+                </div>
+              </div>
+              <ul className="roadmap-list mt-56">
+                {roadmap.map((item, index) => (
+                  <li onClick={() => alert(JSON.stringify(roadmap[index], null, 2))} data-index={index} key={item.id} className={!item.complete ? 'no-active' : ''}>
+                    <p>{item.complete ? 'Completed' : 'Planned'}</p>
+                    <h6>
+                      <img className="svg" src={item.complete ? complete : nocomplete} alt={'item_'+complete} />
+                      <span>{item.title}</span>
+                    </h6>
+                    <p>{item.info}</p>
+
+                    <h6 className="builder-name">{item.builder.firstName} {item.builder.lastName}</h6>
+                    <p><small>Update: {item.date}</small></p>
+
+                  </li>
+                ))}
+                
+              </ul>
             </div>
       </section>
     ); 
