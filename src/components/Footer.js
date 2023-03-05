@@ -1,4 +1,6 @@
 import { Component } from "react";
+import MenuView from "./menu/MenuView"
+import AuthorViewSocial from "./author/AuthorViewSocial"
 
 import logo from '../assets/images/logo.svg';
 import telegramIcon from '../assets/images/telegram-icon.svg';
@@ -50,22 +52,10 @@ class Footer extends Component {
           <div className="row">
             <div className="col-lg-6">
               <a className="logo" href="/"><img src={logo} alt="logo" /></a>
-              <ul className="social">
-                {social.map((item, index) => (
-                  <li key={'social-footer-'+index}>
-                    <a rel="noreferrer" href={item.link} target="_blank">
-                      <img src={item.icon} alt={'icon'+index} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <AuthorViewSocial social={social} />
             </div>
             <div className="col-lg-6">
-              <ul className="menu">
-                {menu.map((item, index) => (
-                  <li key={'footer-menu-'+index}><a href={item.link}>{item.title}</a></li>
-                ))}
-              </ul>
+              <MenuView menu={menu} />
               
               <a href="/#" className="orange-logo" target="_blank" >
                 <img src={orangeLogo} alt="orange-logo" />

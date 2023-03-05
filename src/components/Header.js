@@ -1,4 +1,5 @@
 import { Component } from "react";
+import MenuView from "./menu/MenuView"
 import logo from '../assets/images/logo.svg';
 import burger from '../assets/images/burger-icon.svg';
 
@@ -39,11 +40,7 @@ class Header extends Component {
               <div id="nav-btn"><img src={burger} alt="mob-btn" /></div>
             </div>
             <div className="col-lg-10 menu-container">
-              <ul className="menu">
-                {menu.map((item, index) => (
-                  <li key={'header-menu-'+index}><a href={item.link}>{item.title}</a></li>
-                ))}
-              </ul>
+              <MenuView menu={menu} />
             </div>
           </div>
         </div>
