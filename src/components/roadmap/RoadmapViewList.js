@@ -5,12 +5,12 @@ import RoadmapViewListItem from "./RoadmapViewListItem"
 
 class RoadmapViewList extends Component {
   render() {
-    const {dataItems} = this.props;
+    const {dataItems, selectItems} = this.props;
 
     return (
       <ul className="roadmap-list mt-56">
         {dataItems.map((item) => (
-          <RoadmapViewListItem item={item} key={item.id}/>
+          <RoadmapViewListItem item={item} key={item.id} selectItems={selectItems} />
         ))}
       </ul>
     ); 

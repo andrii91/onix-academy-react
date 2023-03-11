@@ -13,8 +13,8 @@ class HeroView extends Component {
             <h1>{title}</h1>
             <h2>{lessTitle}</h2>
             <ul className="tokens-list">
-              {lessList.map((item) => (
-                <li>{item}</li>
+              {lessList.map((item, index) => (
+                <li key={'ul-list-'+index}>{item}</li>
               ))}
             </ul>
           </div>

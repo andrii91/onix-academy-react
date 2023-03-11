@@ -65,8 +65,11 @@ class Roadmap extends Component {
     super(props);
 
     this.state = {
-      roadmap: data
+      roadmap: data,
+      searchString: '',
+      searchItems: [],
     };
+    
   }
 
   addItem = () => {
@@ -119,8 +122,56 @@ class Roadmap extends Component {
     this.setState({ roadmap: roadmapData });
   };
 
+  onChangeSearch = e => {
+    const { value } = e.target
+    const { roadmap: roadmapData } = this.state;
+    let filters = [];
+    if(value !== '') {
+      filters = roadmapData.filter(function(el) {
+        return el.title.toLowerCase().indexOf(value.toLowerCase()) > -1;
+      })
+    }else{
+      filters = [];
+    }
+
+    this.setState({ searchString: value, searchItems: filters });
+  }
+
+
+  _handleKeyDown = (event) => {
+    const { roadmap: roadmapData } = this.state;
+    let filters = [];
+    
+    switch(event.keyCode ) {
+        case 81:
+          filters.push(roadmapData[0]);
+            break;
+        case 87:
+          filters.push(roadmapData[1]);
+            break;
+        case 69:
+          filters.push(roadmapData[2]);
+            break;  
+        case 82:
+          filters.push(roadmapData[3]);
+            break;                       
+        default: 
+            break;
+    }
+
+    this.setState({searchItems: filters });
+
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this._handleKeyDown);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this._handleKeyDown);
+  }
+
   render() {
-    const {roadmap} = this.state;
+    const {roadmap, searchString, searchItems} = this.state;
 
     return (
         <section className="roadmap" id="roadmap">
@@ -140,7 +191,19 @@ class Roadmap extends Component {
                   <button onClick={this.removeItem} className="btn-registration">Remove Item</button>
                 </div>
               </div>
-              <RoadmapViewList dataItems={roadmap} />
+              <br />
+              <br />
+              <div className="row">
+                <div className="col-xl-3">
+                  <div className="subscription-form">
+                    <input type="text" value={searchString} onChange={this.onChangeSearch} placeholder="search by title Roadmap" />
+                  </div>
+                </div>
+                <div className="col-xl">
+                  щоб вибрати перший елемент натисныть Комбінацію <code>q</code>
+                </div>
+              </div>
+              <RoadmapViewList dataItems={roadmap} selectItems={searchItems} />
             </div>
       </section>
     ); 

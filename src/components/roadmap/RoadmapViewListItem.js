@@ -6,10 +6,14 @@ import nocomplete from '../../assets/images/nocomplete.svg';
 
 class RoadmapViewListItem extends Component {
   render() {
-    const {item} = this.props;
+    const {item, selectItems} = this.props;
 
+    const classesSearch = (selectItems.length > 0 && selectItems.find(itemSearch => itemSearch.id === item.id)) ? 'active-search' : '';
+    const noActive = !item.complete ? 'no-active' : '';
+    const classesName = `${classesSearch} ${noActive}`;
+    
     return (
-        <li onClick={() => alert(JSON.stringify(item, null, 2))}  className={!item.complete ? 'no-active' : ''}>
+        <li onClick={() => alert(JSON.stringify(item, null, 2))}  className={classesName} >
           <p>{item.complete ? 'Completed' : 'Planned'}</p>
           <h6>
               <img className="svg" src={item.complete ? complete : nocomplete} alt={'item_'+complete} />
