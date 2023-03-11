@@ -25,19 +25,13 @@ class Hero extends Component {
   render() {
     const {projectPhoto, projectInfo, title, lessTitle, lessList} = this.state;
     return (
-      <header className="hero">
-        <div className="container">
-          <div className="row">
-            <HeroView 
-              projectPhoto={projectPhoto} 
-              projectInfo={projectInfo}
-              title={title}
-              lessTitle={lessTitle}
-              lessList={lessList}
-            />
-          </div>
-        </div>
-      </header>
+        <HeroView 
+          projectPhoto={projectPhoto} 
+          projectInfo={projectInfo}
+          title={title}
+          lessTitle={lessTitle}
+          lessList={lessList}
+        />
     );
   }
 }

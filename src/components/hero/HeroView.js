@@ -5,14 +5,16 @@ class HeroView extends Component {
   render() {
     const {projectPhoto, projectInfo, title, lessTitle, lessList} = this.props;
     return (
-        <>
+      <header className="hero">
+      <div className="container">
+        <div className="row">
           <div className="col-xl-7 hero-item">
             <h5>{projectInfo}</h5>
             <h1>{title}</h1>
             <h2>{lessTitle}</h2>
             <ul className="tokens-list">
-              {lessList.map((item, index) => (
-                <li key={'ul-list-'+index}>{item}</li>
+              {lessList.map((item) => (
+                <li>{item}</li>
               ))}
             </ul>
           </div>
@@ -21,7 +23,9 @@ class HeroView extends Component {
               <img src={projectPhoto}  alt={title} />
             </div>
           </div>
-        </>
+          </div>
+        </div>
+      </header>
     );
   }
 }

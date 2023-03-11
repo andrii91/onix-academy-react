@@ -9,19 +9,23 @@ class Header extends Component {
 
     this.state = {
       menu: [
-        {
+        { 
+          id: 0,
           link: "https://github.com/andrii91",
           title: "GitHub"
         },
         {
+          id: 1,
           link: "https://github.com/andrii91/onix-academy-react",
           title: "Sourse project"
         },
         {
+          id: 2,
           link: "https://www.figma.com/file/CRgVSBheXU8Q2nQQTlMckS/PicWord-design-exemple?node-id=0%3A1&t=VLgvWl5mLKQc26L1-1",
           title: "Figma project"
         },
         {
+          id: 3,
           link: "https://www.linkedin.com/in/andrii-lytvyn-40803b116/",
           title: "LinkedIn"
         }

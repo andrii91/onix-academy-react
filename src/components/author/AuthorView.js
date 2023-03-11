@@ -7,6 +7,9 @@ class AuthorView extends Component {
     const {photo, name, post, about, social} = this.props;
 
     return (
+      <section className="team" id="team">
+      <div className="container">
+        <h2>Автор</h2>
         <div className="row align-items-center"> 
           <div className="offset-xl-3 col-lg-6 col-xl-4 order-2 order-lg-1">
             <div className="team-item large">
@@ -24,6 +27,8 @@ class AuthorView extends Component {
             </div>
           </div>
         </div>
+        </div>
+      </section>
     );
   }
 }

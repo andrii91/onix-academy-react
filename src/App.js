@@ -5,6 +5,8 @@ import Roadmap from './components/roadmap/Roadmap';
 import ContentSlider from './components/content-slider/ContentSlider';
 import Author from './components/author/Author';
 import Footer from './components/Footer';
+import Timer from './components/Timer';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Author />
       </main>
       <Footer />
+      <Timer />
     </div>
     
   );

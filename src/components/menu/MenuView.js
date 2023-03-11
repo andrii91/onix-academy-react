@@ -6,8 +6,8 @@ class MenuView extends Component {
     const { menu } = this.props;
     return (
         <ul className="menu">
-          {menu.map((item, index) => (
-              <li key={'header-menu-'+index}><a href={item.link}>{item.title}</a></li>
+          {menu.map((item) => (
+              <li key={item.id}><a href={item.link}>{item.title}</a></li>
           ))}
         </ul>
     ); 

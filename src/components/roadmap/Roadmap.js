@@ -70,9 +70,7 @@ class Roadmap extends Component {
   }
 
   addItem = () => {
-    const { roadmap: roadmapData } = this.state;
-
-    const roadmapDataAll = [...roadmapData, {
+    const newItem = {
       id: (new Date()).getTime(),
       title : faker.name.jobTitle(),
       info : faker.lorem.text(),
@@ -82,9 +80,9 @@ class Roadmap extends Component {
           lastName: faker.name.lastName(),
       },
       date: new Date().toLocaleDateString('en-US'),
-    }]
+    };
 
-    this.setState({ roadmap: roadmapDataAll });
+    this.setState(({roadmap}) => ({ roadmap: [...roadmap, newItem] }));
 
   }
 

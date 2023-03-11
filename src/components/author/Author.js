@@ -30,12 +30,7 @@ class Author extends Component {
   render() {
     const {photo, name, post, aboutUser, social} = this.state;
     return (
-      <section className="team" id="team">
-        <div className="container">
-          <h2>Автор</h2>
-          <AuthorView photo={photo} name={name} post={post} about={aboutUser} social={social} />
-        </div>
-      </section>
+      <AuthorView photo={photo} name={name} post={post} about={aboutUser} social={social} />
     );
   }
 }
