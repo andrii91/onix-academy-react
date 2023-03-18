@@ -5,8 +5,8 @@ import RoadmapViewList from "./RoadmapViewList"
 const data = [
   {
     id: 4,
-    title : "Launch Alpha Version",
-    info : "18 June 2021",
+    title : faker.name.jobTitle(),
+    info : faker.lorem.text(),
     complete : 1,
     builder: {
         firstName: 'Jon',
@@ -16,8 +16,8 @@ const data = [
   },
   {
     id: 6,
-    title : "User Aquisition Tests",
-    info : "Conversion grow to 49% ",
+    title : faker.name.jobTitle(),
+    info : faker.lorem.text(),
     complete : 1,
     builder: {
         firstName: 'Vasia',
@@ -27,8 +27,8 @@ const data = [
   },
   {
     id: 2,
-    title : "NFT Player Avatars",
-    info : "Febrary 2022",
+    title : faker.name.jobTitle(),
+    info : faker.lorem.text(),
     complete : 0,
     builder: {
         firstName: 'Vykola',
@@ -38,8 +38,8 @@ const data = [
   },
   {
     id: 1,
-    title : "NFT Marketplace",
-    info : "Febrary 2022",
+    title : faker.name.jobTitle(),
+    info : faker.lorem.text(),
     complete : 0,
     builder: {
         firstName: 'Don',
@@ -49,8 +49,8 @@ const data = [
   },
   {
     id: 13,
-    title : "Support 10 languages",
-    info : "Febrary 2022",
+    title : faker.name.jobTitle(),
+    info : faker.lorem.text(),
     complete : 0,
     builder: {
         firstName: 'Kasatik',
@@ -70,6 +70,14 @@ class Roadmap extends Component {
       searchItems: [],
     };
     
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this._handleKeyDown);
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this._handleKeyDown);
   }
 
   addItem = () => {
@@ -128,10 +136,8 @@ class Roadmap extends Component {
     let filters = [];
     if(value !== '') {
       filters = roadmapData.filter(function(el) {
-        return el.title.toLowerCase().indexOf(value.toLowerCase()) > -1;
+        return el.title.toLowerCase().includes(value.toLowerCase());
       })
-    }else{
-      filters = [];
     }
 
     this.setState({ searchString: value, searchItems: filters });
@@ -141,33 +147,128 @@ class Roadmap extends Component {
   _handleKeyDown = (event) => {
     const { roadmap: roadmapData } = this.state;
     let filters = [];
-    
-    switch(event.keyCode ) {
-        case 81:
-          filters.push(roadmapData[0]);
-            break;
-        case 87:
-          filters.push(roadmapData[1]);
-            break;
-        case 69:
-          filters.push(roadmapData[2]);
-            break;  
-        case 82:
-          filters.push(roadmapData[3]);
-            break;                       
-        default: 
-            break;
+
+    const hotKey = {
+      [81]: () => filters.push(roadmapData[0]),
+      [87]: () => filters.push(roadmapData[1]),
+      [69]: () => filters.push(roadmapData[2]),
+      [82]: () => filters.push(roadmapData[3]),
     }
+
+    hotKey[event.keyCode]?.()
 
     this.setState({searchItems: filters });
 
   }
 
-  componentDidMount(){
-    document.addEventListener("keydown", this._handleKeyDown);
+  parentHandleChange = (e) => {
+    const { roadmap: roadmapData, } = this.state;
+    let filters = [];
+    let id = -1;
+
+    if(e.target.tagName === 'LI') {
+      id = e.target.id;
+      // e.target.classList.toggle('active-search')
+    }else{
+      id = e.target.parentElement.id;
+      // e.target.parentElement.classList.toggle('active-search');
+    }
+
+    if(id > 0) {
+      filters = roadmapData.filter(function(el) {
+        return el.id === Number(id);
+      })
+  
+      this.setState({ searchItems: filters });
+    }
   }
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this._handleKeyDown);
+
+
+  /* change opacity for the dragged item. 
+  remember the source item for the drop later */
+  handleDragStart = (event) => {
+    event.target.classList.add('over-move') 
+    this.setState({ sourceElement: event.target });
+
+    event.dataTransfer.effectAllowed = 'move'
+  }
+
+  /* do not trigger default event of item while passing (e.g. a link) */
+  handleDragOver = (event) => {
+    event.preventDefault()
+    event.dataTransfer.dropEffect = 'move' 
+  }
+
+  /* add class .over while hovering other items */
+  handleDragEnter = (event) => {
+    if (event.target.tagName === 'LI') {
+      event.target.classList.add('over')   
+    }
+     
+  }
+
+  /* remove class .over when not hovering over an item anymore*/
+  handleDragLeave = (event) => {
+    event.target.classList.remove('over')
+  }
+
+  handleDrop = (event) => {
+    const { roadmap: sortedList, sourceElement} = this.state;
+    /* prevent redirect in some browsers*/
+    event.stopPropagation()
+    
+    /* only do something if the dropped on item is 
+    different to the dragged item*/
+    if (sourceElement !== event.target) {
+
+      /* remove dragged item from list */
+      let list = sortedList.filter((item, i) => 
+      item.id.toString() !== sourceElement.id)
+
+      /* this is the removed item */
+      let removed = sortedList.filter((item, i) => 
+      item.id.toString() === sourceElement.id)[0]
+
+      /* insert removed item after this number. */
+      let insertAt = Number(event.target.id)
+
+      console.log('list with item removed', list)
+      console.log('removed:  line', removed)
+      console.log('insertAt index', insertAt)
+
+      let tempList = []
+
+      /* if dropped at last item, don't increase target id by +1. 
+         max-index is arr.length */
+      if (insertAt >= list.length) {
+        tempList = list.slice(0).concat(removed)
+        this.setState({ roadmap: tempList });
+        event.target.classList.remove('over')
+      } else
+      if ((insertAt < list.length)) {
+      /* original list without removed item until the index it was removed at */
+        tempList = list.slice(0,insertAt).concat(removed)
+
+        console.log('tempList', tempList)
+        console.log('insert the rest: ', list.slice(insertAt))
+
+        /* add the remaining items to the list */
+        const newList = tempList.concat(list.slice(
+          insertAt))
+        console.log('newList', newList)
+
+        /* set state to display on page */
+        this.setState({ roadmap: newList });
+        event.target.classList.remove('over')
+      }
+    }
+    else console.log('nothing happened')
+    event.target.classList.remove('over') 
+  }
+
+  handleDragEnd = (event) => {
+    event.target.classList.remove('over-move')
+    console.log('-------------------------------------------------------------')
   }
 
   render() {
@@ -203,7 +304,17 @@ class Roadmap extends Component {
                   щоб вибрати перший елемент натисныть Комбінацію <code>q</code>
                 </div>
               </div>
-              <RoadmapViewList dataItems={roadmap} selectItems={searchItems} />
+              <RoadmapViewList 
+                dataItems={roadmap} 
+                selectItems={searchItems} 
+                handleChange={this.parentHandleChange}
+                DragStart={this.handleDragStart}
+                DragOver={this.handleDragOver}
+                DragEnter={this.handleDragEnter}
+                DragLeave={this.handleDragLeave}
+                Drop={this.handleDrop}
+                DragEnd={this.handleDragEnd}
+               />
             </div>
       </section>
     ); 

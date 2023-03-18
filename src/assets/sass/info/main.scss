@@ -1096,15 +1096,27 @@ h2 {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin: -8px;
+    flex-direction: column;
 
     li {
-      margin: 8px;
+      margin-bottom: 20px;
       padding: 32px;
       background: #34303B;
       border-radius: 10px;
-      min-height: 140px;
-      max-width: 560px;
+      max-width: 100%;
+      width: 100%;
+      position: relative;
+      cursor: move;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+      }
 
       &.no-active {
         opacity: .5;
@@ -1635,4 +1647,13 @@ body {
 
 .mt-30 {
   margin-top: 30px;
+}
+
+.over {
+  transform: scale(1.01);
+  border: 1px dashed #eee;
+}
+
+.over-move {
+  opacity: .5;
 }

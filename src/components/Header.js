@@ -2,6 +2,7 @@ import { Component } from "react";
 import MenuView from "./menu/MenuView"
 import logo from '../assets/images/logo.svg';
 import burger from '../assets/images/burger-icon.svg';
+import Image from "./image/Image";
 
 class Header extends Component {
   constructor(props) {
@@ -40,7 +41,9 @@ class Header extends Component {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-2">
-              <a className="logo" href="/onix-academy-react/"><img src={logo} alt="logo" /></a>
+              <a className="logo" href="/onix-academy-react/">
+                <Image src={logo} alt="Logo" />
+                </a>
               <div id="nav-btn"><img src={burger} alt="mob-btn" /></div>
             </div>
             <div className="col-lg-10 menu-container">
