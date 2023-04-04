@@ -11,8 +11,7 @@ class HW6 extends Component {
     }
   }
 
-
-  async componentDidMount() {
+  getDataApi = async () => {
     try {
       const response = await fetch("https://swapi.dev/api/people/");
       if (!response.ok) {
@@ -24,6 +23,10 @@ class HW6 extends Component {
     } catch (error) {
         console.log(error);
     }
+  }
+
+  componentDidMount() {
+    this.getDataApi();
   }
 
   render() {
