@@ -1657,3 +1657,26 @@ body {
 .over-move {
   opacity: .5;
 }
+
+.table {
+  color: #fff;
+  margin: 0;
+  padding: 0 10px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  th {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    font-weight: bold;
+  }
+  td {
+    border-bottom: 1px solid lightgray;
+    padding: 10px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+}

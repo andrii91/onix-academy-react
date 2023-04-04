@@ -7,7 +7,7 @@ import Author from './components/author/Author';
 import Footer from './components/Footer';
 import Timer from './components/Timer';
 import Image from "./components/image/Image";
-
+import HW6 from './components/HW-6';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
           <Roadmap />
           <ContentSlider />
           <Author />
+          <HW6 />
 
           <div className='row'>
             <div className="col-2"> <Image src='https://picsum.photos/200/200' /> </div>
