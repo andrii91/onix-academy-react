@@ -68,6 +68,10 @@ class Roadmap extends Component {
       roadmap: data,
       searchString: '',
       searchItems: [],
+      classNameDD: {
+        classN: '',
+        id: -1 
+      },
     };
     
   }
@@ -187,8 +191,10 @@ class Roadmap extends Component {
   /* change opacity for the dragged item. 
   remember the source item for the drop later */
   handleDragStart = (event) => {
-    event.target.classList.add('over-move') 
-    this.setState({ sourceElement: event.target });
+    this.setState({ 
+      sourceElement: event.target,
+      classNameDD: 'over-move'
+    });
 
     event.dataTransfer.effectAllowed = 'move'
   }
@@ -202,14 +208,26 @@ class Roadmap extends Component {
   /* add class .over while hovering other items */
   handleDragEnter = (event) => {
     if (event.target.tagName === 'LI') {
-      event.target.classList.add('over')   
+      // event.target.classList.add('over')   
+      this.setState({ 
+        classNameDD: {
+          classN: 'over',
+          id: Number(event.target.id) 
+        }
+      });
     }
      
   }
 
   /* remove class .over when not hovering over an item anymore*/
   handleDragLeave = (event) => {
-    event.target.classList.remove('over')
+    // event.target.classList.remove('over')
+    this.setState({ 
+      classNameDD:  {
+        classN: '',
+        id: Number(event.target.id) 
+      }
+    });
   }
 
   handleDrop = (event) => {
@@ -242,8 +260,12 @@ class Roadmap extends Component {
          max-index is arr.length */
       if (insertAt >= list.length) {
         tempList = list.slice(0).concat(removed)
-        this.setState({ roadmap: tempList });
-        event.target.classList.remove('over')
+        this.setState({ roadmap: tempList, classNameDD:  {
+          classN: '',
+          id: Number(event.target.id) 
+        } });
+        // event.target.classList.remove('over')
+        
       } else
       if ((insertAt < list.length)) {
       /* original list without removed item until the index it was removed at */
@@ -258,21 +280,37 @@ class Roadmap extends Component {
         console.log('newList', newList)
 
         /* set state to display on page */
-        this.setState({ roadmap: newList });
-        event.target.classList.remove('over')
+        this.setState({ roadmap: newList, classNameDD:  {
+          classN: '',
+          id: Number(event.target.id) 
+        } });
+        
+        // event.target.classList.remove('over')
       }
     }
     else console.log('nothing happened')
-    event.target.classList.remove('over') 
+    this.setState({ 
+      classNameDD:  {
+        classN: '',
+        id: Number(event.target.id) 
+      }
+    });
+    // event.target.classList.remove('over') 
   }
 
   handleDragEnd = (event) => {
-    event.target.classList.remove('over-move')
+    // event.target.classList.remove('over-move')
+    this.setState({ 
+      classNameDD:  {
+        classN: '',
+        id: Number(event.target.id) 
+      }
+    });
     console.log('-------------------------------------------------------------')
   }
 
   render() {
-    const {roadmap, searchString, searchItems} = this.state;
+    const {roadmap, searchString, searchItems, classNameDD} = this.state;
 
     return (
         <section className="roadmap" id="roadmap">
@@ -305,6 +343,7 @@ class Roadmap extends Component {
                 </div>
               </div>
               <RoadmapViewList 
+                classDragEndDrop={classNameDD}
                 dataItems={roadmap} 
                 selectItems={searchItems} 
                 handleChange={this.parentHandleChange}

@@ -4,17 +4,28 @@ import RoadmapViewListItem from "./RoadmapViewListItem"
 
 class RoadmapViewList extends Component {
   render() {
-    const {dataItems, selectItems, handleChange, DragStart,
+    const {
+      dataItems, 
+      selectItems, 
+      handleChange, 
+      DragStart,
       DragOver,
       DragEnter,
       DragLeave,
       Drop,
-      DragEnd,} = this.props;
+      DragEnd,
+      classDragEndDrop
+    } = this.props;
 
     return (
       <ul className="roadmap-list mt-56">
         {dataItems.map((item) => (
-          <RoadmapViewListItem item={item} key={item.id} selectItems={selectItems} handleChange={handleChange}
+          <RoadmapViewListItem 
+            classDragEndDrop={classDragEndDrop} 
+            item={item} 
+            key={item.id} 
+            selectItems={selectItems} 
+            handleChange={handleChange}
             DragStart={DragStart}
             DragOver={DragOver}
             DragEnter={DragEnter}

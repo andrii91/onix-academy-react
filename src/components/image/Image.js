@@ -2,18 +2,34 @@ import { Component } from "react";
 import error from "../../assets/images/error.svg";
 
 class Image extends Component {
+  constructor(props) {
+    super(props);
 
-  onError(e) {
+    this.state = {
+      errorClass: '',
+      iconError: '',
+    };
+    
+  }
+  
+  onError = (e) => {
     e.target.onerror = null;
-    e.target.setAttribute('src', error);
-    e.target.classList.add('error-image') 
-
+    
+    this.setState({ 
+      errorClass: 'error-image',
+      iconError: error
+    });
+    
     console.log('error image')
   }
 
-  onLoad(e) {
+  onLoad = (e) => {
+
     if(!e.target.classList.contains('error-image')) {
-      e.target.classList.add('success-image') 
+      this.setState({ 
+        errorClass: 'success-image',
+        iconError: ''
+      });
     }
 
     console.log('success image')
@@ -21,13 +37,14 @@ class Image extends Component {
 
   render() {
     const {src, alt} = this.props;
-    
+    const { errorClass, iconError } = this.state;
     return (
         <img 
-          src={src}
-          onError={this.onError.bind(this)}
-          onLoad={this.onLoad.bind(this)}
+          src={iconError === '' ? src : iconError}
+          onError={this.onError}
+          onLoad={this.onLoad}
           alt={alt}
+          className={errorClass}
         />
     );
   }
