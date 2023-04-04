@@ -35,13 +35,10 @@ class Timer extends Component {
     }
   
     tickSeconds() {
-      let {seconds} = this.state;
-      seconds++;
-
-      this.setState({
-        seconds: seconds,
-        time: this.secondsToTime(seconds),
-      });
+      this.setState(({seconds}) => ({
+        seconds: seconds+1,
+        time: this.secondsToTime(seconds)
+      }))
     }
   
     render() {

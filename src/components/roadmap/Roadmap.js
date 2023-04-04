@@ -106,6 +106,7 @@ class Roadmap extends Component {
         roadmapData.pop();
 
     this.setState({ roadmap: roadmapData });
+    
   }
 
   sortItemById = () => {
