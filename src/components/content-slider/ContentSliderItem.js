@@ -1,6 +1,6 @@
-import { Component } from "react";
-
-import icon1 from "../../assets/images/group7184.svg";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import icon1 from '../../assets/images/group7184.svg';
 
 export default class ContentSliderItem extends Component {
   render() {
@@ -11,24 +11,27 @@ export default class ContentSliderItem extends Component {
         <div className="unique-card active">
           <div className="unique-card-inner">
             <div className="unique-card-front">
-              <img src={item.imageFront} alt={index+'_image-front'}/>
+              <img src={item.imageFront} alt={`${index}_image-front`} />
             </div>
             <div className="unique-card-back">
               <div className="unique-img">
-                  <img src={item.uniqueImg} alt={index+'_image-back'}/>
+                <img src={item.uniqueImg} alt={`${index}_image-back`} />
               </div>
               <div className="unique-content">
                 <h6>{item.title}</h6>
                 <div className="row align-items-center">
                   <div className="col-6">
                     <div className="unique-info">
-                      <img src={icon1} alt={item.title}/>
-                      <p>{item.wrd}WRD</p>
+                      <img src={icon1} alt={item.title} />
+                      <p>
+                        {item.wrd}
+                        WRD
+                      </p>
                     </div>
                   </div>
                   <div className="col-6 text-right">
                     <div className="unique-info">
-                      <img src={item.icon} alt={index+'_image-unique'}/>
+                      <img src={item.icon} alt={`${index}_image-unique`} />
                       <p>{item.iconText}</p>
                     </div>
                   </div>
@@ -42,3 +45,20 @@ export default class ContentSliderItem extends Component {
     );
   }
 }
+
+ContentSliderItem.propTypes = {
+  index: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    imageFront: PropTypes.string.isRequired,
+    uniqueImg: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    wrd: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    iconText: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired
+  }),
+};
+
+ContentSliderItem.defaultProps = {
+  item: null
+};

@@ -1,53 +1,52 @@
-import { Component } from "react";
-import error from "../../assets/images/error.svg";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import error from '../../assets/images/error.svg';
 
 class Image extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      errorClass: '',
-      iconError: '',
+      showError: 0,
     };
-    
   }
   
-  onError = (e) => {
-    e.target.onerror = null;
-    
+  onError = () => {
     this.setState({ 
-      errorClass: 'error-image',
-      iconError: error
+      showError: 1,
     });
-    
-    console.log('error image')
-  }
+  };
 
   onLoad = (e) => {
-
-    if(!e.target.classList.contains('error-image')) {
+    if (!e.target.classList.contains('error-image')) {
       this.setState({ 
-        errorClass: 'success-image',
-        iconError: ''
+        showError: 0,
       });
     }
-
-    console.log('success image')
-  }
+  };
 
   render() {
-    const {src, alt} = this.props;
-    const { errorClass, iconError } = this.state;
+    const { src, alt } = this.props;
+    const { showError } = this.state;
     return (
-        <img 
-          src={iconError === '' ? src : iconError}
-          onError={this.onError}
-          onLoad={this.onLoad}
-          alt={alt}
-          className={errorClass}
-        />
+      <img 
+        src={!showError ? src : error}
+        onError={this.onError}
+        onLoad={this.onLoad}
+        alt={alt}
+        className={showError ? 'error-image' : ''}
+      />
     );
   }
 }
 
 export default Image;
+
+Image.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string
+};
+
+Image.defaultProps = {
+  alt: null
+};

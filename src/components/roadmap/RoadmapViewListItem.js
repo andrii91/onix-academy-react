@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Component } from "react";
 
 import complete from '../../assets/images/complete.svg';
@@ -19,7 +20,7 @@ class RoadmapViewListItem extends Component {
       classDragEndDrop
     } = this.props;
     
-    const classesSearch = (selectItems.length > 0 && selectItems.find(itemSearch => itemSearch.id === item.id)) ? 'active-search' : '';
+    const classesSearch = (selectItems?.includes(({id}) => id === item.id)) ? 'active-search' : '';
     const noActive = !item.complete ? 'no-active' : '';
     const dDClassName = (classDragEndDrop.id === item.id) ? classDragEndDrop.classN : '';
     const classesName = `${classesSearch} ${noActive} ${dDClassName}`;

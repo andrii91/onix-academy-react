@@ -1,53 +1,65 @@
-import { Component } from "react";
+import { Component } from 'react';
 
 class Timer extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {seconds: 0, time: {}};
-    }
-
-    secondsToTime(secs){
-      let hours = Math.floor(secs / (60 * 60));
+  constructor(props) {
+    super(props);
+    this.state = { seconds: 0, };
+  }
+ 
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tickSeconds(),
+      1000
+    );
+  }
   
-      let divisor_for_minutes = secs % (60 * 60);
-      let minutes = Math.floor(divisor_for_minutes / 60);
-  
-      let divisor_for_seconds = divisor_for_minutes % 60;
-      let seconds = Math.ceil(divisor_for_seconds);
-  
-      let obj = {
-        "h": hours,
-        "m": minutes,
-        "s": seconds
-      };
-      return obj;
-    }
-  
-    componentDidMount() {
-      this.timerID = setInterval(
-        () => this.tickSeconds(),
-        1000
-      );
-    }
-  
-    componentWillUnmount() {
-      clearInterval(this.timerID);
-    }
-  
-    tickSeconds() {
-      this.setState(({seconds}) => ({
-        seconds: seconds+1,
-        time: this.secondsToTime(seconds)
-      }))
-    }
-  
-    render() {
-      return (
-        <div>
-          <h2>Ви знаходитесь на сайті: {this.state.time.h} : {this.state.time.m} : {this.state.time.s}.</h2>
-        </div>
-      );
-    }
+  componentWillUnmount() {
+    clearInterval(this.timerID);
   }
 
-  export default Timer;
+  secondsToTime(secs) {
+    const hours = Math.floor(secs / (60 * 60));
+  
+    const divisorForMinutes = secs % (60 * 60);
+    const minutes = Math.floor(divisorForMinutes / 60);
+  
+    const divisorForSeconds = divisorForMinutes % 60;
+    const seconds = Math.ceil(divisorForSeconds);
+  
+    const obj = {
+      h: hours,
+      m: minutes,
+      s: seconds
+    };
+    return obj;
+  }
+
+  tickSeconds() {
+    this.setState(({ seconds }) => ({
+      seconds: seconds + 1,
+    }));
+  }
+  
+  render() {
+    const {
+      seconds 
+    } = this.state;
+    return (
+      <div>
+        <h2>
+          Ви знаходитесь на сайті:
+          {this.secondsToTime(seconds).h}
+          {' '}
+          :
+          {this.secondsToTime(seconds).m}
+          {' '}
+          :
+          {this.secondsToTime(seconds).s}
+          .
+        </h2>
+      </div>
+    );
+  }
+}
+
+export default Timer;

@@ -1,5 +1,5 @@
-import { Component } from "react";
-import HeroView from "./HeroView"
+import { Component } from 'react';
+import HeroView from './HeroView';
 
 import heroImg2x from '../../assets/images/hero-img@2x.png';
 
@@ -19,19 +19,21 @@ class Hero extends Component {
         'Страница должна проходить валидацию на w3c.',
         'Опубликовать страницу с помощью Github Pages. Добавить файл README.md если его нет, и вставить в него ссылку на страницу Github Pages:'
       ],
-    }
+    };
   }
 
   render() {
-    const {projectPhoto, projectInfo, title, lessTitle, lessList} = this.state;
+    const {
+      projectPhoto, projectInfo, title, lessTitle, lessList 
+    } = this.state;
     return (
-        <HeroView 
-          projectPhoto={projectPhoto} 
-          projectInfo={projectInfo}
-          title={title}
-          lessTitle={lessTitle}
-          lessList={lessList}
-        />
+      <HeroView 
+        projectPhoto={projectPhoto} 
+        projectInfo={projectInfo}
+        title={title}
+        lessTitle={lessTitle}
+        lessList={lessList}
+      />
     );
   }
 }

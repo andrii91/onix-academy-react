@@ -1,5 +1,5 @@
-import { Component } from "react";
-import AuthorView from "./AuthorView";
+import { Component } from 'react';
+import AuthorView from './AuthorView';
 
 import photo from '../../assets/images/my-photo@2x.webp';
 import telegramIcon from '../../assets/images/telegram-icon.svg';
@@ -10,7 +10,7 @@ class Author extends Component {
     super(props);
 
     this.state = {
-      photo: photo,
+      image: photo,
       name: 'Литвин Андрій',
       post: 'Frontend',
       aboutUser: 'Хочу прокачати свої навички з Onix Academy',
@@ -24,13 +24,15 @@ class Author extends Component {
           link: 'https://www.instagram.com/lytvyn__andriy/'
         }
       ]
-    }
+    };
   }
 
   render() {
-    const {photo, name, post, aboutUser, social} = this.state;
+    const {
+      image, name, post, aboutUser, social 
+    } = this.state;
     return (
-      <AuthorView photo={photo} name={name} post={post} about={aboutUser} social={social} />
+      <AuthorView photo={image} name={name} post={post} about={aboutUser} social={social} />
     );
   }
 }

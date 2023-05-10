@@ -6,7 +6,7 @@ import ContentSlider from './components/content-slider/ContentSlider';
 import Author from './components/author/Author';
 import Footer from './components/Footer';
 import Timer from './components/Timer';
-import Image from "./components/image/Image";
+import Image from './components/image/Image';
 import HW6 from './components/HW-6';
 
 function App() {
@@ -15,22 +15,28 @@ function App() {
       <Header />
       <Hero />
       <main>
-          <Roadmap />
-          <ContentSlider />
-          <Author />
-          <HW6 />
-
-          <div className='row'>
-            <div className="col-2"> <Image src='https://picsum.photos/200/200' /> </div>
-            <div className="col-2"> <Image src='https://picsum.photos/200/200' /> </div>
-            <div className="col-2"> <Image src='https://picsum.photos/' /> </div>
-            <div className="col-2"> <Image src='https://picsum.phoatos/200/200' /> </div>
+        <Roadmap />
+        <ContentSlider />
+        <Author />
+        <HW6 />
+        <div className="row">
+          <div className="col-2">
+            <Image src="https://picsum.photos/200/200" />
           </div>
+          <div className="col-2">
+            <Image src="https://picsum.photos/200/200" />
+          </div>
+          <div className="col-2">
+            <Image src="https://picsum.photos/" />
+          </div>
+          <div className="col-2">
+            <Image src="https://picsum.phoatos/200/200" />
+          </div>
+        </div>
       </main>
-      <Footer />
+      <Footer />   
       <Timer />
     </div>
-    
   );
 }
 

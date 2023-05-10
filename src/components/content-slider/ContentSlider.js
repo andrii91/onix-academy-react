@@ -1,19 +1,17 @@
-import React, { Component } from "react";
-import Slider from "react-slick";
-import ContentSliderItem from "./ContentSliderItem";
+import { Component } from 'react';
+import Slider from 'react-slick';
+import ContentSliderItem from './ContentSliderItem';
 
-// import icon1 from "../../assets/images/group7184.svg";
-import basic from "../../assets/images/basic.svg";
-import rareInfo from "../../assets/images/rare-info.svg";
-import basicInfo from "../../assets/images/basic-info.svg";
-import legendary from "../../assets/images/legendary.svg";
-import legendaryInfo from "../../assets/images/legendary-info.svg";
-import rare from "../../assets/images/rare.svg";
+import basic from '../../assets/images/basic.svg';
+import rareInfo from '../../assets/images/rare-info.svg';
+import basicInfo from '../../assets/images/basic-info.svg';
+import legendary from '../../assets/images/legendary.svg';
+import legendaryInfo from '../../assets/images/legendary-info.svg';
+import rare from '../../assets/images/rare.svg';
 
-import uniqueImg from "../../assets/images/img726.webp";
-import uniqueImg2 from "../../assets/images/img727.webp";
-import uniqueImg3 from "../../assets/images/img728.webp";
-
+import uniqueImg from '../../assets/images/img726.webp';
+import uniqueImg2 from '../../assets/images/img727.webp';
+import uniqueImg3 from '../../assets/images/img728.webp';
 
 export default class ContentSlider extends Component {
   constructor(props) {
@@ -23,7 +21,7 @@ export default class ContentSlider extends Component {
       slides: [
         {
           imageFront: basic,
-          uniqueImg: uniqueImg,
+          uniqueImg,
           title: 'Markuz Fluid Art',
           wrd: '0.078',
           icon: rareInfo,
@@ -50,7 +48,7 @@ export default class ContentSlider extends Component {
         },
         {
           imageFront: basic,
-          uniqueImg: uniqueImg,
+          uniqueImg,
           title: 'Markuz Fluid Art',
           wrd: '1.0',
           icon: legendaryInfo,
@@ -58,50 +56,51 @@ export default class ContentSlider extends Component {
           author: 'By Indra Rakelna'
         }
       ]
-    }
+    };
   }
-    render() {
-      const { slides } = this.state;
 
-      const settings = {
-        dots: false,
-        arrows: false,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        responsive: [
-          {
-            breakpoint: 1200,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              dots: true
-            }
+  render() {
+    const { slides } = this.state;
+
+    const settings = {
+      dots: false,
+      arrows: false,
+      infinite: false,
+      speed: 300,
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            dots: true
+          }
         },
     
-          {
-            breakpoint: 992,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              dots: true
-    
-            }
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true
+          }
         }
       ]
-      };
-      return (
-          <section className="unique" id="game">
-            <div className="container">
-                <h2>Unique content</h2>
-                <Slider {...settings}  className="unique-slider">
-                  {slides.map((item, index) => (
-                    <ContentSliderItem item={item} index={index} key={'slidr-icon-'+index} />
-                  ))}
-                </Slider>
-            </div>
-          </section>
-      );
-    }
+    };
+    return (
+      <section className="unique" id="game">
+        <div className="container">
+          <h2>Unique content</h2>
+          {/* eslint-disable react/jsx-props-no-spreading */}
+          <Slider {...settings} className="unique-slider">  
+            {slides.map((item, index) => (
+              <ContentSliderItem item={item} index={index} key={`slidr-icon-${item}`} />
+            ))}
+          </Slider>
+        </div>
+      </section>
+    );
   }
+}
